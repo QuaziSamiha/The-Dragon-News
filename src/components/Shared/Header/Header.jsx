@@ -1,4 +1,4 @@
-import { Button, Container, Nav, NavDropdown, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import logo from "../../../assets/logo.png";
 import moment from "moment";
 import Marquee from "react-fast-marquee";
@@ -40,7 +40,7 @@ function Header() {
                 <Nav>
                   <Nav.Link href="#profile">Profile</Nav.Link>
                   <Nav.Link eventKey={2} href="#login">
-                    <Button>Login</Button>
+                    <Button variant="secondary">Login</Button>
                   </Nav.Link>
                 </Nav>
               </Navbar.Collapse>

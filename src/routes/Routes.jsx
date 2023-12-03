@@ -30,8 +30,22 @@ const router = createBrowserRouter([
       {
         path: ":id",
         element: <Category />,
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/categories/${params.id}`),
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/categories/${params.id}`),
+        loader: async ({ params }) => {
+          try {
+            const response = await fetch(
+              `http://localhost:5000/categories/${params.id}`
+            );
+            if (!response.ok) {
+              throw new Error("Failed to fetch data");
+            }
+            return response.json();
+          } catch (error) {
+            console.error("Error loading data:", error);
+            // Handle error, e.g., set a state variable to stop loading
+          }
+        },
       },
     ],
   },

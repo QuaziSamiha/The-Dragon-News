@@ -36,22 +36,10 @@ const router = createBrowserRouter([
       {
         path: ":id",
         element: <Category />,
-        // loader: ({ params }) =>
-        //   fetch(`http://localhost:5000/categories/${params.id}`),
-        loader: async ({ params }) => {
-          try {
-            const response = await fetch(
-              `http://localhost:5000/categories/${params.id}`
-            );
-            if (!response.ok) {
-              throw new Error("Failed to fetch data");
-            }
-            return response.json();
-          } catch (error) {
-            console.error("Error loading data:", error);
-            // Handle error, e.g., set a state variable to stop loading
-          }
-        },
+        loader: ({ params }) =>
+          fetch(
+            `https://dragon-news-server-quazisamiha-quazi-samiha-tasnims-projects.vercel.app/categories/${params.id}`
+          ),
       },
     ],
   },
@@ -68,7 +56,9 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/news/${params.id}`),
+          fetch(
+            `https://dragon-news-server-quazisamiha-quazi-samiha-tasnims-projects.vercel.app/news/${params.id}`
+          ),
       },
     ],
   },
@@ -84,13 +74,13 @@ export default router;
 //       {
 //         path: "/",
 //         element: <Category />,
-//         loader: () => fetch(`http://localhost:5000/news`),
+//         loader: () => fetch(`https://dragon-news-server-quazisamiha-quazi-samiha-tasnims-projects.vercel.app/news`),
 //       },
 //       {
 //         path: "/category/:id",
 //         element: <Category />,
 //         loader: ({ params }) =>
-//           fetch(`http://localhost:5000/categories/${params.id}`),
+//           fetch(`https://dragon-news-server-quazisamiha-quazi-samiha-tasnims-projects.vercel.app/categories/${params.id}`),
 //       },
 //     ],
 //   },
@@ -102,7 +92,7 @@ export default router;
 //         path: ":id",
 //         element: <News />,
 //         loader: ({ params }) =>
-//           fetch(`http://localhost:5000/news/${params.id}`),
+//           fetch(`https://dragon-news-server-quazisamiha-quazi-samiha-tasnims-projects.vercel.app/news/${params.id}`),
 //       },
 //     ],
 //   },

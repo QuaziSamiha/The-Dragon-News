@@ -31,8 +31,8 @@ function Register() {
   };
 
   const handleAccepted = (event) => {
-    console.log(event.target());
-    setAccepted();
+    console.log(event.target.checked);
+    setAccepted(event.target.checked);
   };
   return (
     <>
@@ -81,8 +81,8 @@ function Register() {
                 }
               />
             </Form.Group>
-            <Button variant="primary" type="submit">
-              Submit
+            <Button disabled={!accepted} variant="primary" type="submit">
+              Register
             </Button>{" "}
             <br />
             <Form.Text className="text-secondary">

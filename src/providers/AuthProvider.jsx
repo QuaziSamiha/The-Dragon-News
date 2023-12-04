@@ -16,14 +16,17 @@ function AuthProvider({ children }) {
   // const user = { displayName: "samiha tasnim" };
   // const user = null;
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // it will be used in Register.jsx file
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // it will be used in Login.jsx file
   const signInUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -36,6 +39,8 @@ function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
       console.log("logged in user inside auth state observer", loggedUser);
       // console.log(loggedUser);
+      setUser(loggedUser);
+      setLoading(false);
     });
     // return unsubscribe();
     return () => {
@@ -45,6 +50,7 @@ function AuthProvider({ children }) {
 
   // it will be used in NavigationBar.jsx file
   const logOutUser = () => {
+    setLoading(true);
     return signOut(auth);
   };
 
@@ -54,6 +60,7 @@ function AuthProvider({ children }) {
     createUser,
     signInUser,
     logOutUser,
+    loading,
   };
 
   return (
